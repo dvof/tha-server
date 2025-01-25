@@ -1,0 +1,12 @@
+[Unit]
+Description=The Hague Air server using Gunicorn for Flask sqlite app
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/home/pi/Projects/tha-server/server
+ExecStart=/usr/bin/gunicorn --workers 4 --bind 0.0.0.0:5000 server_sqlite:app --env DEBUG=true
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
